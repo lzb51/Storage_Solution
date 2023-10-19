@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    Storage
+  </title>
+</head>
+
+<body>
+  <form method="POST">
+    <h2>Bin</h2>
+    <input type="text" name="altura_bin" placeholder="altura do Bin" />
+    <input type="text" name="largura_bin" placeholder="largura do Bin" />
+    <input type="text" name="profundidade_bin" placeholder="profundidade do Bin" />
+    <input type="text" name="peso_bin" placeholder="peso do Bin" />
+
+    <h2>Caixa 1</h2>
+    <input type="text" name="altura_cx1" placeholder="altura da caixa" />
+    <input type="text" name="largura_cx1" placeholder="largura da caixa" />
+    <input type="text" name="profundidade_cx1" placeholder="profundidade da caixa" />
+    <input type="text" name="peso_cx1" placeholder="peso da caixa" />
+
+
+    <h2>Caixa 2</h2>
+    <input type="text" name="altura_cx2" placeholder="altura da caixa" />
+    <input type="text" name="largura_cx2" placeholder="largura da caixa" />
+    <input type="text" name="profundidade_cx2" placeholder="profundidade da caixa" />
+    <input type="text" name="peso_cx2" placeholder="peso da caixa" />
+
+    <input type="submit" value="Subimit" />
+
+    {% if solution != None %}
+    <p>Solution is : <b>{{ solution }}</b></p>
+    {% endif %}
+  </form>
+</body>
+
+</html>

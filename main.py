@@ -1,14 +1,46 @@
-from caixa import coletar_informacoes_caixa
-from bin import coletar_informacoes_bin
-from coletarinfo import coletar
 from coordenada import bin_packing
-from py3dbp import Packer, Bin, Item
-import re
+from flask import Flask, request, render_template
 
-quantidade_caixas = int(input("Quantas caixas você gostaria de inserir? "))
-caixas_info = coletar_informacoes_caixa(quantidade_caixas)  # Passe a quantidade de caixas como argumento
-bin_info = coletar_informacoes_bin(caixas_info)  # Passe a quantidade de caixas como argumento
-solution = bin_packing(bin_info, caixas_info)
-for i, coordinates in enumerate(solution):
-    x, y, z = coordinates
-    print(f"Caixa {i + 1} - Coordenadas (x, y, z): ({x}, {y}, {z})")
+app = Flask(__name__)
+
+@app.route('/', methods=['GET', 'POST'])
+def home():
+    solution = None
+    if request.method == 'POST':
+      altura_bin  = float(request.form.get('altura_bin'))
+      largura_bin  = float(request.form.get('largura_bin'))
+      profundidade_bin  = float(request.form.get('profundidade_bin'))
+      peso_bin  = float(request.form.get('peso_bin'))
+      bin = {"altura": altura_bin,
+             "largura": largura_bin,
+             "profundidade": profundidade_bin,
+             "peso": peso_bin,
+             }
+
+      altura_cx1  = float(request.form.get('altura_cx1'))
+      largura_cx1  = float(request.form.get('largura_cx1'))
+      profundidade_cx1  = float(request.form.get('profundidade_cx1'))
+      peso_cx1  = float(request.form.get('peso_cx1'))
+      cx1 = {
+            "altura": float(altura_cx1),
+            "largura": float(largura_cx1),
+            "profundidade": float(profundidade_cx1),
+            "peso": float(peso_cx1),
+        }
+
+      altura_cx2  = float(request.form.get('altura_cx2'))
+      largura_cx2  = float(request.form.get('largura_cx2'))
+      profundidade_cx2  = float(request.form.get('profundidade_cx2'))
+      peso_cx2  = float(request.form.get('peso_cx2'))
+      cx2 = {
+            "altura": float(altura_cx2),
+            "largura": float(largura_cx2),
+            "profundidade": float(profundidade_cx2),
+            "peso": float(peso_cx2),
+        }
+      solution = bin_packing(bin,[cx1, cx2])
+
+    return render_template('index.html', solution=solution)
+
+if __name__ == '__main__':
+    app.run(debug=True)
