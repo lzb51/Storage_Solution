@@ -1,5 +1,7 @@
 from coordenada import bin_packing
+from solution import combinar_coordenadas
 from flask import Flask, request, render_template
+from graph import plot_multiple_3d_graphs
 
 app = Flask(__name__)
 
@@ -38,9 +40,12 @@ def home():
             "profundidade": float(profundidade_cx2),
             "peso": float(peso_cx2),
         }
-      solution = bin_packing(bin,[cx1, cx2])
-
-    return render_template('index.html', solution=solution)
-
+      caixas = [cx1, cx2]
+      solution = bin_packing(bin,caixas)
+      data_list = combinar_coordenadas(solution, caixas)
+      plot_file = plot_multiple_3d_graphs(data_list)
+      return render_template('index.html', solution=solution, plot_file=plot_file)
+    else:
+        return render_template('index.html', solution=solution)
 if __name__ == '__main__':
     app.run(debug=True)
