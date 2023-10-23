@@ -31,3 +31,4 @@ def bin_packing(bin, caixas):
             coordenadas_caixas.append(coordenadas_caixa)
 
     return coordenadas_caixas
+    

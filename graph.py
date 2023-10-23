@@ -55,3 +55,4 @@ def plot_multiple_3d_graphs(data_list):
     offline.plot(fig, filename=plot_path, auto_open=False)
 
     return plot_file
+    

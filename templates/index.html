@@ -2,33 +2,48 @@
 <html>
 
 <head>
-  <title>
-    Storage
-  </title>
+  <title>Storage</title>
 </head>
 
 <body>
-  <form method="POST">
+  <form method="POST" id="storage-form">
     <h2>Bin</h2>
     <input type="text" name="altura_bin" placeholder="altura do Bin" />
     <input type="text" name="largura_bin" placeholder="largura do Bin" />
     <input type="text" name="profundidade_bin" placeholder="profundidade do Bin" />
     <input type="text" name="peso_bin" placeholder="peso do Bin" />
 
-    <h2>Caixa 1</h2>
-    <input type="text" name="altura_cx1" placeholder="altura da caixa" />
-    <input type="text" name="largura_cx1" placeholder="largura da caixa" />
-    <input type="text" name="profundidade_cx1" placeholder="profundidade da caixa" />
-    <input type="text" name="peso_cx1" placeholder="peso da caixa" />
+    <h2>Caixas</h2>
+    <label for="num_caixas">Número de Caixas:</label>
+    <input type="number" id="num_caixas" name="num_caixas" min="1" required />
+    <button type="button" id="add-caixa">Adicionar Caixa</button>
 
+    <div id="caixas-container">
+      <!-- Os campos de caixa serão adicionados aqui -->
+    </div>
 
-    <h2>Caixa 2</h2>
-    <input type="text" name="altura_cx2" placeholder="altura da caixa" />
-    <input type="text" name="largura_cx2" placeholder="largura da caixa" />
-    <input type="text" name="profundidade_cx2" placeholder="profundidade da caixa" />
-    <input type="text" name="peso_cx2" placeholder="peso da caixa" />
+    <input type="submit" value="Submit" />
+  </form>
 
-    <input type="submit" value="Subimit" />
+  <script>
+    document.getElementById('add-caixa').addEventListener('click', function () {
+      var numCaixas = parseInt(document.getElementById('num_caixas').value);
+      var container = document.getElementById('caixas-container');
+      container.innerHTML = ''; // Limpa os campos existentes
+
+      for (var i = 1; i <= numCaixas; i++) {
+        var caixaNumber = i;
+        var caixaDiv = document.createElement('div');
+        caixaDiv.innerHTML = '<h2>Caixa ' + caixaNumber + '</h2>' +
+          '<input type="text" name="altura_cx' + caixaNumber + '" placeholder="altura da caixa" />' +
+          '<input type="text" name="largura_cx' + caixaNumber + '" placeholder="largura da caixa" />' +
+          '<input type="text" name="profundidade_cx' + caixaNumber + '" placeholder="profundidade da caixa" />' +
+          '<input type="text" name="peso_cx' + caixaNumber + '" placeholder="peso da caixa" />';
+        container.appendChild(caixaDiv);
+      }
+    });
+  </script>
+
 
     {% if solution != None %}
     <p>Solution is : <b>{{ solution }}</b></p>
