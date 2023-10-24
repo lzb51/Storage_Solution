@@ -20,3 +20,4 @@ def combinar_coordenadas(solutions, caixas):
 
 
 
+

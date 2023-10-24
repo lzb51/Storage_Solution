@@ -2,7 +2,7 @@ from py3dbp import Packer, Bin, Item
 import re
 def bin_packing(bin, caixas):
     packer = Packer()
-    packer.add_bin(Bin('large-box', bin["largura"], bin["altura"], bin["profundidade"], bin["peso"]))
+    packer.add_bin(Bin('large-box', bin["largura"], bin["altura"], bin["profundidade"], 100000000))
 
     for i, caixa in enumerate(caixas):
         packer.add_item(Item(f'caixa {i}', caixa["largura"], caixa["altura"], caixa["profundidade"], caixa["peso"]))

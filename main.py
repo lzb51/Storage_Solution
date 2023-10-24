@@ -12,12 +12,12 @@ def home():
         altura_bin = float(request.form.get('altura_bin'))
         largura_bin = float(request.form.get('largura_bin'))
         profundidade_bin = float(request.form.get('profundidade_bin'))
-        peso_bin = float(request.form.get('peso_bin'))
+
         bin_data = {
             "altura": altura_bin,
             "largura": largura_bin,
             "profundidade": profundidade_bin,
-            "peso": peso_bin,
+
         }
 
         num_caixas = int(request.form.get('num_caixas'))
@@ -47,5 +47,6 @@ def home():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 
 
